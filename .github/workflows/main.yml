@@ -1,0 +1,25 @@
+name: Deploy Static Website to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Змінити на вашу основну гілку, якщо це не main
+  workflow_dispatch:  # Дозволяє запускати workflow вручну
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
